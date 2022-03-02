@@ -5,8 +5,6 @@ const axios = require("axios");
 //Import model
 const Restaurant = require("../models/Restaurant");
 
-const GOOGLE_API_KEY = process.env.MY_GOOGLE_API_KEY;
-
 router.get("/restaurant", async (req, res) => {
   try {
     console.log("req.query==>", req.query);
@@ -14,6 +12,8 @@ router.get("/restaurant", async (req, res) => {
     // console.log(placeId);
 
     const restaurant = await Restaurant.findOne({ placeId: placeId });
+
+    // requête nearby
 
     res.status(200).json(restaurant);
   } catch (error) {
