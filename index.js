@@ -18,6 +18,9 @@ app.use(homepageRoutes);
 const restaurantRoutes = require("./routes/restaurant");
 app.use(restaurantRoutes);
 
+const signupRoutes = require("./routes/signup");
+app.use(signupRoutes);
+
 app.all("*", (req, res) => {
   res.status(404).json({ message: "Page Not Found" });
 });
