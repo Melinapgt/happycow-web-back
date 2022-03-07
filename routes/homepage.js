@@ -12,9 +12,6 @@ router.get("/", async (req, res) => {
     const limit = 100;
     const bestRestaurantLimit = 10;
 
-    const restaurants = await Restaurant.find().limit(limit);
-    // console.log(restaurants);
-
     //top Ten
 
     const ratingRestaurants = await Restaurant.find()
@@ -22,7 +19,21 @@ router.get("/", async (req, res) => {
       .sort({ rating: "desc" });
     // console.log(ratingRestaurants);
 
-    res.status(200).json({ ratingRestaurants, restaurants });
+    //filtre - recherche
+    let filter = req.query.search;
+
+    if (filter) {
+      console.log(filter);
+      const restaurants = await Restaurant.find({
+        name: new RegExp(filter, "i"),
+      }).limit(limit);
+      res.status(200).json({ ratingRestaurants, restaurants });
+    } else {
+      const restaurants = await Restaurant.find().limit(limit);
+      res.status(200).json({ ratingRestaurants, restaurants });
+    }
+
+    // console.log(restaurants);
   } catch (error) {
     console.log("error.response ==>", error.response);
     res.status(400).json({ error: "Bad request" });
