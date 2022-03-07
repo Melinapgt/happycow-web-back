@@ -24,6 +24,9 @@ app.use(signupRoutes);
 const loginRoutes = require("./routes/login");
 app.use(loginRoutes);
 
+const allRestaurantsRoutes = require("./routes/allRestaurants");
+app.use(allRestaurantsRoutes);
+
 app.all("*", (req, res) => {
   res.status(404).json({ message: "Page Not Found" });
 });
