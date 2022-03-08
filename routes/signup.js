@@ -15,11 +15,14 @@ router.post("/signup", async (req, res) => {
 
     const searchForEmail = await User.findOne({ email });
     console.log(searchForEmail);
+    const searchForUsername = await User.findOne({ username });
     if (searchForEmail !== null) {
       console.log(searchForEmail);
       res
         .status(409)
         .json({ message: "Account already existing with this email" });
+    } else if (searchForUsername !== null) {
+      res.status(409).json({ message: "This username already exist" });
     } else {
       // création du compte
       const salt = uid2(64);
