@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const axios = require("axios");
 
 //Import model
 const Restaurant = require("../models/Restaurant");
@@ -35,7 +34,7 @@ router.get("/", async (req, res) => {
 
     // console.log(restaurants);
   } catch (error) {
-    console.log("error.response ==>", error.response);
+    console.log("error.message==>", error.message);
     res.status(400).json({ error: "Bad request" });
   }
 });
