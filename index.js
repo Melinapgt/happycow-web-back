@@ -27,8 +27,14 @@ app.use(loginRoutes);
 const allRestaurantsRoutes = require("./routes/allRestaurants");
 app.use(allRestaurantsRoutes);
 
-const reviewRoutes = require("./routes/review");
-app.use(reviewRoutes);
+const reviewPublishRoutes = require("./routes/reviewPublish");
+app.use(reviewPublishRoutes);
+
+const reviewsRoutes = require("./routes/reviews");
+app.use(reviewsRoutes);
+
+const reviewsRestaurantRoutes = require("./routes/reviewsPlaceId");
+app.use(reviewsRestaurantRoutes);
 
 app.all("*", (req, res) => {
   res.status(404).json({ message: "Page Not Found" });

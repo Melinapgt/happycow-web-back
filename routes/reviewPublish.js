@@ -5,10 +5,11 @@ const router = express.Router();
 const User = require("../models/User");
 const Review = require("../models/Review");
 
-router.post("/review", async (req, res) => {
+router.post("/review/publish", async (req, res) => {
   try {
     console.log(req.fields);
-    const { rating, reviewTitle, review, username, placeIdReview } = req.fields;
+    const { rating, reviewTitle, review, username, placeIdReview, nameReview } =
+      req.fields;
 
     //Recherche du userId dans la BDD avec le username
     const user = await User.findOne({ username });
@@ -21,7 +22,9 @@ router.post("/review", async (req, res) => {
       reviewTitle,
       review,
       userId,
+      username,
       placeId: placeIdReview,
+      name: nameReview,
     });
 
     await newReview.save();

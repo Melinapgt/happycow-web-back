@@ -12,23 +12,23 @@ router.get("/restaurant", async (req, res) => {
     // console.log(req.query.placeId);
 
     const restaurant = await Restaurant.findOne({ placeId: Number(placeId) });
-    console.log(Object.keys(restaurant._doc));
+    // console.log(Object.keys(restaurant._doc));
 
-    console.log(
-      "restaurant.nearbyPlacesIds==>",
-      restaurant._doc.nearbyPlacesIds
-    );
+    // console.log(
+    //   "restaurant.nearbyPlacesIds==>",
+    //   restaurant._doc.nearbyPlacesIds
+    // );
     // requête nearby
     const nearbyRestaurants = [];
 
     for (const placeId of restaurant._doc.nearbyPlacesIds) {
-      console.log("nearby placeId", placeId);
+      // console.log("nearby placeId", placeId);
       const nearby = await Restaurant.findOne({ placeId });
-      console.log(nearby);
+      // console.log(nearby);
       nearbyRestaurants.push(nearby);
     }
 
-    console.log(nearbyRestaurants);
+    // console.log(nearbyRestaurants);
 
     res
       .status(200)
