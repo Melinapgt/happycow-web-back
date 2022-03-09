@@ -3,6 +3,7 @@ const router = express.Router();
 
 //Import model
 const Restaurant = require("../models/Restaurant");
+const Favorite = require("../models/Favorite");
 
 router.get("/", async (req, res) => {
   try {
@@ -26,9 +27,19 @@ router.get("/", async (req, res) => {
       const restaurants = await Restaurant.find({
         name: new RegExp(filter, "i"),
       }).limit(limit);
+      //test envoie id favoris
+      // const placeId = restaurants.placeId;
+      // const searchForFavoriteId = await Favorite({ placeId });
+      // console.log("searchForFavoriteId==>", searchForFavoriteId);
+
       res.status(200).json({ ratingRestaurants, restaurants });
     } else {
       const restaurants = await Restaurant.find().limit(limit);
+      //test envoie id favoris
+      // const placeId = restaurants.placeId;
+      // const searchForFavoriteId = await Favorite({ placeId });
+      // console.log("searchForFavoriteId==>", searchForFavoriteId);
+
       res.status(200).json({ ratingRestaurants, restaurants });
     }
 

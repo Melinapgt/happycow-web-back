@@ -3,6 +3,7 @@ const router = express.Router();
 
 //Import model
 const Restaurant = require("../models/Restaurant");
+const Favorite = require("../models/Favorite");
 
 router.get("/restaurant", async (req, res) => {
   try {
@@ -18,7 +19,8 @@ router.get("/restaurant", async (req, res) => {
     //   "restaurant.nearbyPlacesIds==>",
     //   restaurant._doc.nearbyPlacesIds
     // );
-    // requête nearby
+
+    // requête nearby--------------------------------------
     const nearbyRestaurants = [];
 
     for (const placeId of restaurant._doc.nearbyPlacesIds) {
@@ -28,7 +30,9 @@ router.get("/restaurant", async (req, res) => {
       nearbyRestaurants.push(nearby);
     }
 
-    // console.log(nearbyRestaurants);
+    // vérification si Favorites Id
+    const searchForFavoriteId = await Favorite({ placeId });
+    console.log("searchForFavoriteId==>", searchForFavoriteId);
 
     res
       .status(200)

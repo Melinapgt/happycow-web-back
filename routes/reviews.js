@@ -7,7 +7,7 @@ const Review = require("../models/Review");
 
 router.get("/reviews", async (req, res) => {
   try {
-    console.log("req.fields reveiws ==>", req.fields);
+    // console.log("req.fields reveiws ==>", req.fields);
 
     const reviews = await Review.find();
     res.status(200).json(reviews);
