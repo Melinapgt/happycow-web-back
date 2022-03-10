@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
   try {
     console.log("req.query homepage==>", req.query);
 
-    const limit = 20;
+    const limit = 10;
     const bestRestaurantLimit = 10;
 
     //top Ten
