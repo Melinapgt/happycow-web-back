@@ -6,7 +6,7 @@ const Restaurant = require("../models/Restaurant");
 
 router.get("/restaurants/all", async (req, res) => {
   try {
-    console.log(req.query);
+    console.log("req.query allRestaurant==>", req.query);
 
     //filtre - recherche
     let filter = req.query.search;

@@ -14,7 +14,7 @@ router.post("/signup", async (req, res) => {
     const { email, username, password } = req.fields;
 
     const searchForEmail = await User.findOne({ email });
-    console.log(searchForEmail);
+    console.log("searForEmail signup ==>", searchForEmail);
     const searchForUsername = await User.findOne({ username });
     if (searchForEmail !== null) {
       console.log(searchForEmail);

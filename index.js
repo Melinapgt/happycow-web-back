@@ -8,7 +8,7 @@ const app = express();
 app.use(formidable());
 app.use(cors());
 
-mongoose.connect("mongodb://localhost/happycow");
+mongoose.connect(process.env.MONGODB_URI);
 
 //import des routes
 
@@ -36,8 +36,8 @@ app.use(reviewsRoutes);
 const reviewsRestaurantRoutes = require("./routes/reviewsPlaceId");
 app.use(reviewsRestaurantRoutes);
 
-const addFavoritesRoutes = require("./routes/addFavorites");
-app.use(addFavoritesRoutes);
+const favoritesRoutes = require("./routes/favorites");
+app.use(favoritesRoutes);
 
 app.all("*", (req, res) => {
   res.status(404).json({ message: "Page Not Found" });

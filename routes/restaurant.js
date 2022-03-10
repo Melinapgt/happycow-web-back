@@ -3,14 +3,12 @@ const router = express.Router();
 
 //Import model
 const Restaurant = require("../models/Restaurant");
-const Favorite = require("../models/Favorite");
 
 router.get("/restaurant", async (req, res) => {
   try {
-    console.log("req.query==>", req.query);
+    console.log("req.query restaurant==>", req.query);
     const { placeId } = req.query;
     // console.log(placeId);
-    // console.log(req.query.placeId);
 
     const restaurant = await Restaurant.findOne({ placeId: Number(placeId) });
     // console.log(Object.keys(restaurant._doc));
@@ -29,10 +27,6 @@ router.get("/restaurant", async (req, res) => {
       // console.log(nearby);
       nearbyRestaurants.push(nearby);
     }
-
-    // vérification si Favorites Id
-    const searchForFavoriteId = await Favorite({ placeId });
-    console.log("searchForFavoriteId==>", searchForFavoriteId);
 
     res
       .status(200)

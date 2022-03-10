@@ -5,6 +5,7 @@ const router = express.Router();
 
 const Review = require("../models/Review");
 
+//Read - Pour un restaurant spécifique
 router.get("/reviews/restaurant", async (req, res) => {
   try {
     console.log("req.query reviews placeId==>", req.query);
