@@ -8,15 +8,15 @@ router.get("/favorites/restaurants", async (req, res) => {
   try {
     console.log(req.query);
     const { favorites } = req.query;
-
+    console.log("favorites==>", favorites);
     const favoritesRestaurants = [];
-    for (const restaurantId of favorites) {
-      const restaurant = await Restaurant.findById(restaurantId);
-      // console.log(nearby);
-      favoritesRestaurants.push(restaurant);
-    }
+    // for (const restaurantId of favorites) {
+    //   const restaurant = await Restaurant.findById(restaurantId);
+    //   console.log(restaurant);
+    //   favoritesRestaurants.push(restaurant);
+    // }
 
-    res.status(200).json(favoritesRestaurants);
+    // res.status(200).json(favoritesRestaurants);
   } catch (error) {
     console.log("error.message==>", error.message);
     res.status(400).json({ error: "Bad request" });

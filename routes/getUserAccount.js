@@ -3,6 +3,7 @@ const router = express.Router();
 
 // import
 const User = require("../models/User");
+const Restaurant = require("../models/Restaurant");
 
 router.get("/my-account", async (req, res) => {
   try {
@@ -11,9 +12,22 @@ router.get("/my-account", async (req, res) => {
     console.log(username);
 
     const userAccount = await User.findOne({ username });
-    console.log(userAccount);
+    console.log("userAccount", userAccount);
 
-    res.status(200).json(userAccount);
+    // Récupération des favoris
+    const favoritesArray = userAccount.favorites;
+    console.log(favoritesArray);
+
+    const favoritesRestaurants = [];
+
+    for (const restaurantId of favoritesArray) {
+      const restaurant = await Restaurant.findById(restaurantId);
+      console.log(restaurant);
+      favoritesRestaurants.push(restaurant);
+    }
+    console.log(favoritesRestaurants);
+
+    res.status(200).json({ userAccount, favoritesRestaurants });
   } catch (error) {
     console.log("error.message==>", error.message);
     res.status(400).json({ error: "Bad request" });
