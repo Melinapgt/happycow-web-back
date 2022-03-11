@@ -42,6 +42,9 @@ app.use(favoritesRoutes);
 const getUserAccountRoutes = require("./routes/getUserAccount");
 app.use(getUserAccountRoutes);
 
+const getFavoritesRoutes = require("./routes/getFavorites");
+app.use(getFavoritesRoutes);
+
 app.all("*", (req, res) => {
   res.status(404).json({ message: "Page Not Found" });
 });
