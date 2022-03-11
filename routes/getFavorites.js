@@ -9,9 +9,13 @@ router.get("/favorites/restaurants", async (req, res) => {
     console.log(req.query);
     const { favorites } = req.query;
 
-    const favoritesRestaurants = await Restaurant.findById({
-      id: { $in: favorites },
-    });
+    const favoritesRestaurants = [];
+    for (const restaurantId of favorites) {
+      const restaurant = await Restaurant.findById(restaurantId);
+      // console.log(nearby);
+      favoritesRestaurants.push(restaurant);
+    }
+
     res.status(200).json(favoritesRestaurants);
   } catch (error) {
     console.log("error.message==>", error.message);
