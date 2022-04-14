@@ -20,7 +20,7 @@ router.get("/restaurant", async (req, res) => {
 
     // requête nearby--------------------------------------
     const nearbyRestaurants = [];
-
+    //._doc a été utilisé pour eviter d'avoir un undefined, probablement dû au chargement de la bdd avec le fichier json
     for (const placeId of restaurant._doc.nearbyPlacesIds) {
       // console.log("nearby placeId", placeId);
       const nearby = await Restaurant.findOne({ placeId });

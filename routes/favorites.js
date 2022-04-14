@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-// import
-// const Restaurant = require("../models/Restaurant");
+// import MODEL
 const User = require("../models/User");
 
 router.post("/favorites", async (req, res) => {

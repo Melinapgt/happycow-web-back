@@ -5,7 +5,6 @@ const router = express.Router();
 const User = require("../models/User");
 const Review = require("../models/Review");
 
-//Read
 router.get("/reviews", async (req, res) => {
   try {
     // console.log("req.fields reveiws ==>", req.fields);

@@ -18,11 +18,7 @@ router.get("/restaurants/all", async (req, res) => {
     }
     const limit = 20;
     const skip = (page - 1) * limit;
-    const restaurants = await Restaurant.find().limit(limit).skip(skip);
-
-    // if (filter) {
-    //   console.log(filter);
-    // }
+    // const restaurants = await Restaurant.find().limit(limit).skip(skip);
 
     if (filter) {
       console.log("allRestaurant filter ==>", filter);
