@@ -26,31 +26,28 @@ router.post("/favorites", async (req, res) => {
         favorites: searchForUser.favorites,
       });
     } else {
-      for (let i = 0; i < searchForUser.favorites.length; i++) {
-        // console.log(
-        //   `pour i= ${i}, searchForUser.favorites[i]=${searchForUser.favorites[i]}`
-        // );
-        if (searchForUser.favorites[i] === restaurantId) {
-          searchForUser.favorites.splice(i, 1);
-          await searchForUser.save();
-          res.status(200).json({
-            message: "Successfully removed !",
-            favorites: searchForUser.favorites,
-          });
-
-          break;
-        } else {
-          searchForUser.favorites.push(restaurantId);
-          await searchForUser.save();
-          res
-            .status(200)
-            .json({
-              message: "Successfully added to favorites !",
+      if (searchForUser.favorites.find((el) => el === restaurantId)) {
+        for (let i = 0; i < searchForUser.favorites.length; i++) {
+          // console.log(
+          //   `pour i= ${i}, searchForUser.favorites[i]=${searchForUser.favorites[i]}`
+          // );
+          if (searchForUser.favorites[i] === restaurantId) {
+            searchForUser.favorites.splice(i, 1);
+            await searchForUser.save();
+            res.status(200).json({
+              message: "Successfully removed !",
               favorites: searchForUser.favorites,
             });
-
-          break;
+            break;
+          }
         }
+      } else {
+        searchForUser.favorites.push(restaurantId);
+        await searchForUser.save();
+        res.status(200).json({
+          message: "Successfully added to favorites !",
+          favorites: searchForUser.favorites,
+        });
       }
     }
   } catch (error) {
